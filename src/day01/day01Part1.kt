@@ -8,6 +8,7 @@ fun main() {
         .readLines()
         .map { it.toInt() }
 
+
     val size = testInput.size-1
 
     var total = 0
@@ -19,7 +20,9 @@ fun main() {
     }
     println(total)
 
-
+    //optimal solution
+    val count = testInput.zipWithNext().count(){(x,y) -> y > x}
+    println(count)
 }
 
 

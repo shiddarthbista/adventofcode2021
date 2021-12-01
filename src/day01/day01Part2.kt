@@ -8,6 +8,7 @@ fun main() {
         .readLines()
         .map { it.toInt() }
 
+
     var size = testInput.size - 3
     var total = 0
     var firstSum = 0
@@ -23,5 +24,8 @@ fun main() {
 
     println(total)
 
+    //optimal solution
+    val count = testInput.windowed(3).map{it.sum()}.zipWithNext().count(){(x,y) -> y > x}
+    println(count)
 
 }
