@@ -4,7 +4,7 @@ import java.io.File
 
 fun main() {
 
-    val input = File("src/day02/input.txt")
+    val input = File("src/day02/testInput.txt")
         .readLines()
 
     val commands = input.map {
@@ -22,11 +22,15 @@ fun main() {
     fun destination (commands: List<Command>): Int{
         var depth = 0
         var position = 0
+        var aim = 0
         for (command in commands){
             when (command.direction){
-                Direction.FORWARD -> position+= command.length
-                Direction.DOWN -> depth += command.length
-                Direction.UP -> depth -= command.length
+                Direction.FORWARD -> {
+                    position += command.length
+                    depth += aim * command.length
+                }
+                Direction.DOWN -> aim += command.length
+                Direction.UP -> aim -= command.length
             }
         }
         return depth * position
@@ -34,8 +38,4 @@ fun main() {
 
     println(destination(commands))
 }
-
-enum class Direction {UP, DOWN, FORWARD}
-
-data class Command (var direction : Direction,var length: Int)
 
